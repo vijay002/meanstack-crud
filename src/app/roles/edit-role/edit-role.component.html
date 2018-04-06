@@ -1,0 +1,70 @@
+<div bsModal #editRoleModal="bs-modal" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="editRoleModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog">
+        <div #modalContent class="modal-content">
+                <form *ngIf="active" [formGroup]="roleForm"  #editRoleForm="ngForm" id="frm_edit_role" (ngSubmit)="save()"> 
+                        <div class="modal-header">
+                                <h4 class="modal-title">
+                                    <span>Manage Role </span>
+                                </h4>
+                                <button type="button" class="close" (click)="close()" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>
+
+                        <div class="modal-body">
+                                <div class="row">
+                                        <div class="col-sm-12 ">
+                                            <label for="roleName" class="form-label">Role Name</label>
+                                            <div class="form-group">
+                                                <input id="roleName" type="text"  class="form-control" formControlName="roleName" required maxlength="50" class="validate form-control">
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-sm-12 ">
+                                            <label for="description" class="form-label">Description</label>
+                                            <div class="form-group">
+                                                <input id="description" type="text"  class="form-control" formControlName="description" required maxlength="100" class="validate form-control">
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <label for="isTechnician" class="form-label">Is Technician</label>
+                                        <div class="form-group">
+                                            <input id="isTechnician" type="checkbox"  formControlName="isTechnician">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 ">
+                                        <label for="isEndUser" class="form-label">Is EndUser</label>
+                                        <div class="form-group">
+                                            <input id="isEndUser" type="checkbox"  formControlName="isEndUser">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 ">
+                                        <label for="isEditHelp" class="form-label">Is Edit Help</label>
+                                        <div class="form-group">
+                                            <input id="isEditHelp" type="checkbox" formControlName="isEditHelp">
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                                <button [disabled]="saving" type="button" class="btn btn-default waves-effect" (click)="close()">
+                                    Cancel
+                                </button>
+                                <button [disabled]="!editRoleForm.form.valid || saving" type="submit" class="btn btn-primary waves-effect">
+                                    Save
+                                </button>
+                        </div>
+
+
+
+                </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<section class="content-header">    
+    <h1 class="h1">Project list </h1>
+    <ol class="breadcrumb">
+            <li><a href="/dashboard"><i class="Riw-dashboard"></i> Dashboard</a></li>
+    </ol>        
+</section>
+<section class="content container-fluid">
+    <div class="box box-warning left-cont-summary">
+        <div class="row">
+            <div class="col-sm-12">
+               <button class="btn btn-primary btn-sm" type="button" (click)="createProject()"><i class="fa fa-plus"></i>&nbsp; Add</button>
+           </div>
+       </div>
+       <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                    <p-dataTable #dtProjects  [value]="projects" [resizableColumns]="true" 
+                    [lazy]="true" (onLazyLoad)="loadProjectList($event)"
+                    [paginator]="true" rows="10" [totalRecords]="totalRecords" [rowsPerPageOptions]="[10,20,30,50]"
+                    >
+            <p-column field="_id" header="Id" [hidden]="true" ></p-column>
+            <p-column field="Title" header="Title" [filter]="false">
+                <!-- <ng-template pTemplate="filter" let-col>
+                    <filter-stringcomponent searchfield="{{col.field}}" (optionClickCompleted)="gridfilter($event)"></filter-stringcomponent>
+                </ng-template> -->
+            </p-column>
+            <p-column field="startingDate" header="startingDate"></p-column>
+            
+            <p-column  header="Action" [filter]="false" [style]="{'width':'12%', 'overflow':'visible'}">
+                <ng-template let-data="rowData" pTemplate="body">
+                    <button class="btn btn-primary btn-sm" (click)="updatesProject(data._id)">Edit</button>
+                    <button class="btn btn-primary btn-sm" (click)="deleteProject(data._id)">Delete</button>
+                </ng-template>
+            </p-column>
+        </p-dataTable>
+                </div>
+    </div>
+
+
+    </div>
+</section>
+
+
+<create-project-modal #createProjectModal (modalSave)="refresh()"></create-project-modal>
+<!-- <edit-project-modal #editProjectModal (modalSave)="refresh()"></edit-project-modal> -->

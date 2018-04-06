@@ -1,0 +1,63 @@
+<div bsModal #createProjectModal="bs-modal" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="createProjectModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog">
+                <div #modalContent class="modal-content">
+                        <form *ngIf="active" [formGroup]="projectForm"  #createProjectForm="ngForm" id="frm_create_project" (ngSubmit)="save()"> 
+                                <div class="modal-header">
+                                        <h4 class="modal-title">
+                                                <span>Manage Project</span>
+                                        </h4>
+                                        <button type="button" class="close" (click)="close()" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        
+                                </div>
+                                <div class="modal-body">
+                                        <div class="row">
+                                                <div class="col-sm-12 ">
+                                                    <label for="Title" class="form-label">Project Name</label>
+                                                    <div class="form-group">
+                                                        <input id="Title" type="text"  formControlName="Title" required maxlength="50" class="validate form-control">
+                                                    </div>
+                                                </div>
+
+                                                <!-- <input class="form-control" type="text" formControlName="description">
+                                                <control-messages [labelText]="'Description'" [submitted]="submitted" [control]="userGroup.controls.description"></control-messages> -->
+                                        </div>
+                                        <div class="row">
+                                                <div class="col-sm-12 ">
+                                                    <label for="startDate" class="form-label">Start Date</label>
+                                                    <div class="form-group">
+                                                        <input id="startDate" type="date"  class="form-control validate" formControlName="startDate" required> 
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 ">
+                                                <label for="endDate" class="form-label">Start Date</label>
+                                                <div class="form-group">
+                                                    <input id="endDate" type="date"  class="form-control validate" formControlName="endDate" required> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <label for="StatusID" class="form-label">Status</label>
+                                                <div class="form-group">
+                                                        <input id="StatusID" type="text"  class="form-control validate" formControlName="StatusID"> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                </div>
+                                <div class="modal-footer">
+                                        <button [disabled]="saving" type="button" class="btn btn-default waves-effect" (click)="close()">
+                                            Cancel
+                                        </button>
+                                        <button [disabled]="!createProjectForm.form.valid || saving" type="submit" class="btn btn-primary waves-effect">
+                                            Save
+                                        </button>
+                                </div>
+                        </form>
+                </div>
+    </div>
+</div>

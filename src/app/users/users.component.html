@@ -1,0 +1,38 @@
+﻿
+ <section class="content-header">    
+
+        <h1 class="h1">Users </h1>
+        <ol class="breadcrumb">
+                <li><a href="/home"><i class="Riw-dashboard"></i> Dashboard</a></li>
+        </ol>        
+
+</section>
+<section class="content container-fluid">
+
+<div class="box box-warning left-cont-summary">
+        <div class="row">
+                <div class="col-sm-12">
+                   <button class="btn btn-primary btn-sm pull-right" type="button" (click)="createUser()"><i class="fa fa-plus"></i>&nbsp; Add</button>
+               </div>
+           </div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+    <p-dataTable #dtUsers  [value]="users" [resizableColumns]="true"
+     [lazy]="true" (onLazyLoad)="loadUserList($event)">
+        <p-column field="_id" header="Id" [hidden]="true" ></p-column>
+        <p-column field="name" header="Name" [style]="{'width': '40%'}"></p-column>
+        <p-column field="email" header="Email"></p-column>
+        <p-column  header="Action" [filter]="false" [style]="{'width':'15%', 'overflow':'visible'}">
+            <ng-template let-data="rowData" pTemplate="body">
+                <button class="btn btn-primary btn-sm" (click)="updatesUser(data._id)">Edit</button>
+                <button class="btn btn-primary btn-sm" (click)="deleteUser(data._id)">Delete</button>
+            </ng-template>
+        </p-column>
+    </p-dataTable>
+    </div>
+</div>
+
+</div>
+</section>
+<create-user-modal #createUserModal (modalSave)="refresh()"></create-user-modal>
+<edit-user-modal #editUserModal (modalSave)="refresh()"></edit-user-modal>
