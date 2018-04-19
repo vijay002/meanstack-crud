@@ -11,7 +11,11 @@ var ProjectSchema = new Schema({
     startingDate:  { type: Date, default: Date.now},
     endingDate : { type: Date },
     categoryId : { type : Number },
-    statusId : { type : Number, required : true }
+    statusId : { type : Number, required : true },
+    users : [{
+        type: Schema.Types.ObjectId,
+        ref :'users'
+    }]
 });
 
 

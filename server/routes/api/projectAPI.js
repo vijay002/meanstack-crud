@@ -76,18 +76,21 @@ router.get('/projects/:id', auth.verifyToken, function (req, res){
 //Create
 router.post('/projects', auth.verifyToken, function (req, res) {
     var d = domain.create();
-
+    
     d.on('error', function(error){
         if(!isInTest)  console.log(error.stacktrace);
         res.status(500).send({'error': error.message});
     });
+    
+
     d.run(function(){
         projectDAO.createProject({
                 title:  req.body.title,
                 startingDate:  req.body.startingDate,
                 endingDate : req.body.endingDate,
                 categoryId : req.body.categoryId,
-                statusId : req.body.statusId
+                statusId : req.body.statusId,
+                user : req.body.user
             }, 
             {
             success: function(pro){
@@ -115,7 +118,8 @@ router.put('/projects/:id', auth.verifyToken, function (req, res){
             startingDate:  req.body.startingDate,
             endingDate : req.body.endingDate,
             categoryId : req.body.categoryId,
-            statusId : req.body.statusId
+            statusId : req.body.statusId,
+            user : req.body.user
             }, 
             {
             success: function(user){

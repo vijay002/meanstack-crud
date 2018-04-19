@@ -79,12 +79,17 @@ function readProjectById(id, callbacks){
 
 //CREATE user function
 function createProject(proj, callbacks){
+    console.log('Projects  value');
+    console.log(proj);
+
     var project = new ProjectModel({
         title:   proj.title,
         startingDate:  proj.startingDate,
         endingDate : proj.endingDate,
         categoryId : proj.categoryId,
-        statusId : proj.statusId
+        statusId : proj.statusId,
+        users : proj.users
+       
     });
 
     project.save(function (err) {
@@ -126,6 +131,7 @@ function updateProject(id, proj, callbacks){
             p.endingDate = proj.endingDate;
             p.categoryId = proj.categoryId;
             p.statusId = proj.statusId;
+            p.users = proj.users;
 
             return p.save(function (err) {
                 if (!err) {

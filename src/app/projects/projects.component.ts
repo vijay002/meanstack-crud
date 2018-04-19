@@ -8,7 +8,7 @@ import { ConfigService } from '../../shared/config/config.service';
 import { Router } from '@angular/router';
 
  import { CreateProjectComponent } from "./create-project/create-project.component";
- //import { EditRoleComponent } from "./edit-project/edit-project.component";
+ import { EditProjectComponent } from "./edit-project/edit-project.component";
 import { ProjectService } from '../../shared/services/project.service';
 
 @Component({
@@ -23,7 +23,7 @@ export class ProjectsComponent  {
 
 
     @ViewChild('createProjectModal') createProjectModal: CreateProjectComponent;
-   // @ViewChild('editProjectModal') editRoleModal: EditRoleComponent;
+    @ViewChild('editProjectModal') editProjectModal: EditProjectComponent;
     @ViewChild('dtProjects') dtTable : DataTable; //Datatable Grid
 
     constructor(injector: Injector,
@@ -70,9 +70,21 @@ loadProjectList(event) {
     }
     
 
-    updatesProject()
+    updatesProject(input: any): void 
     {
-        
+        this.editProjectModal.show(input);
+    }
+
+    deleteProject(input : any ) : void {
+        this._projectservice.deleteProject(input).subscribe((res) => 
+        {
+            this.toasterService.pop('success', 'Success', 'Project Deleted successfully.');
+            this.refresh();
+        },
+        error => {
+            this.toasterService.pop('error', 'Error', error);
+            console.log(error);
+        });
     }
 
     

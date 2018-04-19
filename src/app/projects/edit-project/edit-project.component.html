@@ -1,7 +1,7 @@
-<div bsModal #createProjectModal="bs-modal" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="createProjectModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+<div bsModal #editProjectModal="bs-modal" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="editProjectModal" aria-hidden="true" [config]="{backdrop: 'static'}">
     <div class="modal-dialog">
                 <div #modalContent class="modal-content">
-                        <form *ngIf="active" [formGroup]="projectForm"  #createProjectForm="ngForm" id="frm_create_project" (ngSubmit)="save()"> 
+                        <form *ngIf="active" [formGroup]="projectForm"  #editProjectForm="ngForm" id="frm_edit_project" (ngSubmit)="save()"> 
                                 <div class="modal-header">
                                         <h4 class="modal-title">
                                                 <span>Manage Project</span>
@@ -62,7 +62,7 @@
                                         <button [disabled]="saving" type="button" class="btn btn-default waves-effect" (click)="close()">
                                             Cancel
                                         </button>
-                                        <button [disabled]="!createProjectForm.form.valid || saving" type="submit" class="btn btn-primary waves-effect">
+                                        <button [disabled]="!editProjectForm.form.valid || saving" type="submit" class="btn btn-primary waves-effect">
                                             Save
                                         </button>
                                 </div>

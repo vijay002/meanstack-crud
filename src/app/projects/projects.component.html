@@ -18,7 +18,7 @@
                     [paginator]="true" rows="10" [totalRecords]="totalRecords" [rowsPerPageOptions]="[10,20,30,50]"
                     >
             <p-column field="_id" header="Id" [hidden]="true" ></p-column>
-            <p-column field="Title" header="Title" [filter]="false">
+            <p-column field="title" header="Title" [filter]="false">
                 <!-- <ng-template pTemplate="filter" let-col>
                     <filter-stringcomponent searchfield="{{col.field}}" (optionClickCompleted)="gridfilter($event)"></filter-stringcomponent>
                 </ng-template> -->
@@ -41,4 +41,4 @@
 
 
 <create-project-modal #createProjectModal (modalSave)="refresh()"></create-project-modal>
-<!-- <edit-project-modal #editProjectModal (modalSave)="refresh()"></edit-project-modal> -->
+<edit-project-modal #editProjectModal (modalSave)="refresh()"></edit-project-modal> 

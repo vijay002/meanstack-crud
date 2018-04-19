@@ -6,15 +6,14 @@ import 'rxjs/add/operator/map';
 import { ProjectService  } from '../../../shared/services/project.service';
 import { UserserviceService , User } from '../../../shared/services/userservice.service';
 //import { User } from '../../../shared/services/authentication.service';
-//import { User } from '../../../shared/services/authentication.service';
 
 @Component({
-    selector: 'create-project-modal',
-    templateUrl: './create-project.component.html'
+    selector: 'edit-project-modal',
+    templateUrl: './edit-project.component.html'
 })
 
-export class CreateProjectComponent implements OnInit  {
-    @ViewChild('createProjectModal') modal: ModalDirective;
+export class EditProjectComponent implements OnInit  {
+    @ViewChild('editProjectModal') modal: ModalDirective;
     @ViewChild('modalContent') modalContent: ElementRef;
     @Output() modalSave: EventEmitter<any> = new EventEmitter<any>();
 
@@ -61,11 +60,13 @@ export class CreateProjectComponent implements OnInit  {
         });  
       }  
 
-       show(): void {
-        this.active = true;
-        this.modal.show();
-        this.projectForm.reset();
-        //this.user = new CreateAddressDto();
+       show(id: string): void {
+
+        this._projectservice.getProjectbyId(id).subscribe((result) => {
+          this.projectForm.patchValue(result);
+              this.active = true;
+              this.modal.show();
+          });
        }
 
       close(): void {
@@ -90,7 +91,7 @@ export class CreateProjectComponent implements OnInit  {
            this.projectForm.reset();
            this.saving = false;
            this.close();
-           this.toasterService.pop('success', 'Success', 'Project save successfully.');
+           this.toasterService.pop('success', 'Success', 'Project Updated successfully.');
            this.modalSave.emit(null);
        },
        error => {

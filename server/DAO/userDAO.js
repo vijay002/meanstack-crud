@@ -192,9 +192,7 @@ function updateUser(id, user, callbacks){
 // }
 
 function loginUser(user, callbacks){
-    console.log('INSIDE USER');
     console.log(user);
-
     UserModel.findOne({'email' : user.email}, (err, usr) => {
   
       if( err )
